@@ -1,21 +1,34 @@
 // Vercel API 端點 - 教學課程相關操作
 import { createClient } from '@supabase/supabase-js'
+import { verifyApiKey, rateLimit, setCorsHeaders } from '../middleware/security.js'
 
-const supabaseUrl = 'https://qsljizkshpbvfotcarjn.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzbGppemtzaHBidmZvdGNhcmpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM4NTY5NTUsImV4cCI6MjA2OTQzMjk1NX0.rZk0UBzYMsXcBkyONn808PmpPhRaGwjSUV3ElyRlWAs'
+const supabaseUrl = process.env.SUPABASE_URL || 'https://qsljizkshpbvfotcarjn.supabase.co'
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzbGppemtzaHBidmZvdGNhcmpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM4NTY5NTUsImV4cCI6MjA2OTQzMjk1NX0.rZk0UBzYMsXcBkyONn808PmpPhRaGwjSUV3ElyRlWAs'
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 export default async function handler(req, res) {
   // 設置 CORS
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version')
+  setCorsHeaders(res)
 
   if (req.method === 'OPTIONS') {
     res.status(200).end()
     return
+  }
+
+  // API 密鑰驗證
+  const authResult = verifyApiKey(req)
+  if (!authResult.valid) {
+    return res.status(401).json({ error: authResult.error })
+  }
+
+  // 速率限制
+  const rateLimitResult = rateLimit(req, 100, 60000) // 每分鐘最多 100 次請求
+  if (!rateLimitResult.allowed) {
+    return res.status(429).json({ 
+      error: rateLimitResult.error,
+      resetTime: rateLimitResult.resetTime
+    })
   }
 
   try {

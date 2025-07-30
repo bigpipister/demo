@@ -10,6 +10,7 @@ class ApiService {
       ? 'https://demo-iota-nine-24.vercel.app/api' 
       : '/api'
     this.useSupabase = true // 優先使用 Supabase
+    this.apiKey = import.meta.env.VITE_API_SECRET_KEY || 'demo-secret-key-12345'
   }
 
   async request(endpoint, options = {}) {
@@ -17,6 +18,7 @@ class ApiService {
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        'x-api-key': this.apiKey, // 添加 API 密鑰
         ...options.headers
       },
       ...options

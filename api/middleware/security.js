@@ -1,0 +1,60 @@
+// API 安全中間件
+export function verifyApiKey(req) {
+  const apiKey = req.headers['x-api-key'] || req.query.apikey;
+  const validApiKey = process.env.API_SECRET_KEY;
+  
+  if (!apiKey || !validApiKey) {
+    return { valid: false, error: 'API key is required' };
+  }
+  
+  if (apiKey !== validApiKey) {
+    return { valid: false, error: 'Invalid API key' };
+  }
+  
+  return { valid: true };
+}
+
+// 速率限制
+const rateLimitMap = new Map();
+
+export function rateLimit(req, maxRequests = 100, windowMs = 60000) {
+  const ip = req.headers['x-forwarded-for'] || req.connection?.remoteAddress || 'unknown';
+  const now = Date.now();
+  const windowStart = now - windowMs;
+  
+  if (!rateLimitMap.has(ip)) {
+    rateLimitMap.set(ip, []);
+  }
+  
+  const requests = rateLimitMap.get(ip);
+  // 清理過期請求
+  const validRequests = requests.filter(time => time > windowStart);
+  
+  if (validRequests.length >= maxRequests) {
+    return { 
+      allowed: false, 
+      error: 'Rate limit exceeded',
+      resetTime: Math.ceil((validRequests[0] + windowMs - now) / 1000)
+    };
+  }
+  
+  validRequests.push(now);
+  rateLimitMap.set(ip, validRequests);
+  
+  return { allowed: true };
+}
+
+// CORS 設置
+export function setCorsHeaders(res) {
+  // 只允許你的域名
+  const allowedOrigins = [
+    'https://demo-iota-nine-24.vercel.app',
+    'http://localhost:5174',
+    'http://localhost:3000'
+  ];
+  
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigins.join(','));
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-api-key');
+  res.setHeader('Access-Control-Max-Age', '86400');
+}
