@@ -201,6 +201,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import NavBar from '../components/NavBar.vue'
+import { getEnvInfo } from '../utils/envTest.js'
 
 const route = useRoute()
 const router = useRouter()
@@ -364,6 +365,10 @@ const startLearning = () => {
 const playLesson = (lesson) => {
   // 這裡可以實作播放課程的邏輯
   console.log('播放課程:', lesson.title)
+  
+  // 🔍 環境變數測試 - 查看構建時注入的值
+  console.log('環境變數測試:', getEnvInfo())
+  
   // 可以跳轉到課程播放頁面或顯示課程內容
 }
 </script>

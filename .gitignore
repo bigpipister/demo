@@ -13,10 +13,9 @@ dist-ssr
 *.local
 
 # Environment variables
-# .env  # 暫時允許提交，用於 Vercel 測試
+.env
 .env.local
 .env.development
-# .env.production  # 註解掉，允許提交到 Git
 
 # Editor directories and files
 .vscode/*

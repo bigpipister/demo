@@ -9,25 +9,16 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 export default async function handler(req, res) {
   // 設置 CORS
-  setCorsHeaders(res)
+  setCorsHeaders(res, req)
 
   if (req.method === 'OPTIONS') {
     res.status(200).end()
     return
   }
 
-  // 調試：檢查環境變數
-  console.log('Environment Debug:', {
-    hasApiSecret: !!process.env.API_SECRET_KEY,
-    apiSecretPreview: process.env.API_SECRET_KEY ? `${process.env.API_SECRET_KEY.substring(0, 5)}...` : 'NONE',
-    hasSupabaseUrl: !!process.env.SUPABASE_URL,
-    receivedApiKey: req.headers['x-api-key'] ? `${req.headers['x-api-key'].substring(0, 5)}...` : 'NONE'
-  });
-
   // API 密鑰驗證
   const authResult = verifyApiKey(req)
   if (!authResult.valid) {
-    console.log('Auth failed:', authResult.error);
     return res.status(401).json({ error: authResult.error })
   }
 

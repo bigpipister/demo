@@ -15,8 +15,11 @@ export class SupabaseService {
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': this.apiKey, // 添加 API 密鑰
+        'Cache-Control': 'no-cache', // 避免快取問題
         ...options.headers
       },
+      // 添加快取控制
+      cache: 'no-cache',
       ...options
     }
 
@@ -29,6 +32,24 @@ export class SupabaseService {
       return await response.json()
     } catch (error) {
       console.error('API request failed:', error)
+      
+      // 如果是網路錯誤，嘗試重試一次
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        console.log('Network error detected, retrying...')
+        try {
+          await new Promise(resolve => setTimeout(resolve, 1000)) // 等待 1 秒
+          const retryResponse = await fetch(url, config)
+          if (!retryResponse.ok) {
+            const errorData = await retryResponse.json()
+            throw new Error(errorData.error || `HTTP error! status: ${retryResponse.status}`)
+          }
+          return await retryResponse.json()
+        } catch (retryError) {
+          console.error('Retry also failed:', retryError)
+          throw retryError
+        }
+      }
+      
       throw error
     }
   }
