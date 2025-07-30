@@ -93,17 +93,17 @@ CREATE TABLE public.tutorial_reviews (
 
 -- 插入範例講師數據
 INSERT INTO public.instructors (name, title, bio, avatar_url, email) VALUES
-('張小明', '資深前端工程師', '擁有 8 年前端開發經驗，專精於 Vue.js 生態系統', 'https://via.placeholder.com/80x80?text=張小明', 'zhang@example.com'),
-('李小華', '全端開發專家', '精通前後端開發，有豐富的教學經驗', 'https://via.placeholder.com/80x80?text=李小華', 'li@example.com'),
-('王小強', '前端架構師', '專注於現代化前端工具鏈和最佳實踐', 'https://via.placeholder.com/80x80?text=王小強', 'wang@example.com');
+('張小明', '資深前端工程師', '擁有 8 年前端開發經驗，專精於 Vue.js 生態系統', 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&auto=format&face=center', 'zhang@example.com'),
+('李小華', '全端開發專家', '精通前後端開發，有豐富的教學經驗', 'https://images.unsplash.com/photo-1494790108755-2616b612b6fd?w=80&h=80&fit=crop&auto=format&face=center', 'li@example.com'),
+('王小強', '前端架構師', '專注於現代化前端工具鏈和最佳實踐', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&auto=format&face=center', 'wang@example.com');
 
 -- 插入範例教學數據
 INSERT INTO public.tutorials (title, description, category, level, duration, image_url, instructor_id, rating, students_count, lessons_count, is_published) VALUES
-('Vue 3 基礎入門', '從零開始學習 Vue 3 的核心概念，包括響應式數據、組件開發和 Composition API。通過實際項目練習，掌握現代前端開發技能。', 'Vue.js', '初級', '2小時', 'https://via.placeholder.com/400x250?text=Vue+3', 1, 4.8, 1250, 8, true),
-('Vite 構建工具詳解', '深入了解 Vite 的特性和配置，學習如何優化開發環境和構建流程。掌握現代前端構建工具的使用技巧。', '工具', '中級', '1.5小時', 'https://via.placeholder.com/400x250?text=Vite', 2, 4.6, 890, 6, true),
-('Element Plus 組件庫', '掌握 Element Plus 組件的使用技巧，學習如何自定義主題和組件。構建美觀實用的前端界面。', 'Vue.js', '初級', '3小時', 'https://via.placeholder.com/400x250?text=Element+Plus', 1, 4.7, 2100, 12, true),
-('JavaScript ES6+ 進階', '深入學習現代 JavaScript 特性，包括異步編程、模組化和新語法。提升 JavaScript 編程技能。', 'JavaScript', '中級', '4小時', 'https://via.placeholder.com/400x250?text=JavaScript', 3, 4.9, 3200, 15, true),
-('Vue Router 4 路由管理', '學習 Vue Router 4 的新特性，實現單頁應用的路由管理。掌握現代 SPA 開發技巧。', 'Vue.js', '高級', '2小時', 'https://via.placeholder.com/400x250?text=Vue+Router', 1, 4.6, 950, 8, true);
+('Vue 3 基礎入門', '從零開始學習 Vue 3 的核心概念，包括響應式數據、組件開發和 Composition API。通過實際項目練習，掌握現代前端開發技能。', 'Vue.js', '初級', '2小時', 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop&auto=format', 1, 4.8, 1250, 8, true),
+('Vite 構建工具詳解', '深入了解 Vite 的特性和配置，學習如何優化開發環境和構建流程。掌握現代前端構建工具的使用技巧。', '工具', '中級', '1.5小時', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=250&fit=crop&auto=format', 2, 4.6, 890, 6, true),
+('Element Plus 組件庫', '掌握 Element Plus 組件的使用技巧，學習如何自定義主題和組件。構建美觀實用的前端界面。', 'Vue.js', '初級', '3小時', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=250&fit=crop&auto=format', 1, 4.7, 2100, 12, true),
+('JavaScript ES6+ 進階', '深入學習現代 JavaScript 特性，包括異步編程、模組化和新語法。提升 JavaScript 編程技能。', 'JavaScript', '中級', '4小時', 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=250&fit=crop&auto=format', 3, 4.9, 3200, 15, true),
+('Vue Router 4 路由管理', '學習 Vue Router 4 的新特性，實現單頁應用的路由管理。掌握現代 SPA 開發技巧。', 'Vue.js', '高級', '2小時', 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=250&fit=crop&auto=format', 1, 4.6, 950, 8, true);
 
 -- 插入範例章節和課時數據
 INSERT INTO public.tutorial_chapters (tutorial_id, title, description, order_index) VALUES

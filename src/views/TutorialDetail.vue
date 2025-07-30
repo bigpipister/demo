@@ -217,7 +217,7 @@ const tutorials = ref([
     id: 1,
     title: 'Vue 3 基礎入門',
     description: '從零開始學習 Vue 3 的核心概念，包括響應式數據、組件開發和 Composition API。通過實際項目練習，掌握現代前端開發技能。',
-    image: 'https://via.placeholder.com/600x300?text=Vue+3+Course',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=300&fit=crop&auto=format',
     level: '初級',
     duration: '2小時',
     lessons: 8,
@@ -237,7 +237,7 @@ const tutorials = ref([
     instructor: {
       name: '張小明',
       title: '資深前端工程師',
-      avatar: 'https://via.placeholder.com/60x60?text=Teacher',
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&auto=format&face=center',
       bio: '擁有 8 年前端開發經驗，專精於 Vue.js 生態系統，曾在多家知名互聯網公司擔任技術主管。',
       students: 12500,
       courses: 15,
@@ -326,14 +326,14 @@ const relatedCourses = ref([
   {
     id: 2,
     title: 'Vite 構建工具詳解',
-    image: 'https://via.placeholder.com/100x60?text=Vite',
+    image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=100&h=60&fit=crop&auto=format',
     level: '中級',
     duration: '1.5小時'
   },
   {
     id: 3,
     title: 'Element Plus 組件庫',
-    image: 'https://via.placeholder.com/100x60?text=Element',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=100&h=60&fit=crop&auto=format',
     level: '初級',
     duration: '3小時'
   }

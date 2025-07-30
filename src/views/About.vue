@@ -223,7 +223,7 @@ const teamMembers = ref([
     name: '張小明',
     title: '技術總監',
     bio: '8年前端開發經驗，Vue.js 核心貢獻者',
-    avatar: 'https://via.placeholder.com/80x80?text=張小明',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&auto=format&face=center',
     skills: ['Vue.js', 'React', 'TypeScript']
   },
   {
@@ -231,7 +231,7 @@ const teamMembers = ref([
     name: '李小華',
     title: '課程總監',
     bio: '擁有豐富的教學經驗，專精於課程設計',
-    avatar: 'https://via.placeholder.com/80x80?text=李小華',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b6fd?w=80&h=80&fit=crop&auto=format&face=center',
     skills: ['教學設計', 'UX設計', 'JavaScript']
   },
   {
@@ -239,7 +239,7 @@ const teamMembers = ref([
     name: '王小強',
     title: '前端工程師',
     bio: '專注於現代化前端工具鏈和最佳實踐',
-    avatar: 'https://via.placeholder.com/80x80?text=王小強',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&auto=format&face=center',
     skills: ['Vite', 'Webpack', 'Node.js']
   },
   {
@@ -247,7 +247,7 @@ const teamMembers = ref([
     name: '林小美',
     title: 'UI/UX 設計師',
     bio: '致力於創造優秀的用戶體驗和介面設計',
-    avatar: 'https://via.placeholder.com/80x80?text=林小美',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&auto=format&face=center',
     skills: ['UI設計', 'Figma', 'CSS']
   }
 ])
@@ -257,37 +257,37 @@ const technologies = ref([
     id: 1,
     name: 'Vue.js',
     description: '漸進式框架',
-    logo: 'https://via.placeholder.com/60x60?text=Vue'
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg'
   },
   {
     id: 2,
     name: 'React',
     description: '組件化庫',
-    logo: 'https://via.placeholder.com/60x60?text=React'
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'
   },
   {
     id: 3,
     name: 'TypeScript',
     description: '型別安全',
-    logo: 'https://via.placeholder.com/60x60?text=TS'
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg'
   },
   {
     id: 4,
     name: 'Vite',
     description: '快速構建',
-    logo: 'https://via.placeholder.com/60x60?text=Vite'
+    logo: 'https://vitejs.dev/logo.svg'
   },
   {
     id: 5,
     name: 'Element Plus',
     description: 'UI 組件庫',
-    logo: 'https://via.placeholder.com/60x60?text=EP'
+    logo: 'https://element-plus.org/images/element-plus-logo.svg'
   },
   {
     id: 6,
     name: 'Tailwind CSS',
     description: '實用優先',
-    logo: 'https://via.placeholder.com/60x60?text=TW'
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg'
   }
 ])
 

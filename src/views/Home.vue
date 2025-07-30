@@ -107,7 +107,7 @@ const latestTutorials = ref([
     id: 1,
     title: 'Vue 3 基礎入門',
     description: '從零開始學習 Vue 3 的核心概念和 Composition API',
-    image: 'https://via.placeholder.com/300x200?text=Vue+3',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=300&h=200&fit=crop&auto=format',
     level: '初級',
     duration: '2小時'
   },
@@ -115,7 +115,7 @@ const latestTutorials = ref([
     id: 2,
     title: 'Vite 構建工具詳解',
     description: '深入了解 Vite 的特性和配置，提升開發效率',
-    image: 'https://via.placeholder.com/300x200?text=Vite',
+    image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop&auto=format',
     level: '中級',
     duration: '1.5小時'
   },
@@ -123,7 +123,7 @@ const latestTutorials = ref([
     id: 3,
     title: 'Element Plus 組件庫',
     description: '掌握 Element Plus 組件的使用和自定義',
-    image: 'https://via.placeholder.com/300x200?text=Element+Plus',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=200&fit=crop&auto=format',
     level: '初級',
     duration: '3小時'
   }

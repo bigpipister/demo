@@ -155,7 +155,7 @@ const isDark = ref(false)
 
 const userInfo = ref({
   name: '使用者',
-  avatar: 'https://via.placeholder.com/32x32?text=U'
+  avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&auto=format&face=center'
 })
 
 // 當前活躍的選單項
