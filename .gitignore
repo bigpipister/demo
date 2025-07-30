@@ -15,8 +15,8 @@ dist-ssr
 # Environment variables
 .env
 .env.local
-.env.production
 .env.development
+# .env.production  # 註解掉，允許提交到 Git
 
 # Editor directories and files
 .vscode/*
