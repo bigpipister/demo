@@ -46,8 +46,33 @@
           </el-row>
         </el-card>
 
+        <!-- 載入狀態 -->
+        <el-row v-if="loading" :gutter="20" class="tutorials-grid">
+          <el-col :xs="24" :sm="12" :lg="8" v-for="n in 6" :key="n">
+            <el-skeleton animated>
+              <template #template>
+                <el-skeleton-item variant="image" style="width: 100%; height: 200px" />
+                <div style="padding: 20px">
+                  <el-skeleton-item variant="h3" style="width: 50%" />
+                  <el-skeleton-item variant="text" style="margin-top: 10px" />
+                  <el-skeleton-item variant="text" style="margin-top: 10px; width: 30%" />
+                </div>
+              </template>
+            </el-skeleton>
+          </el-col>
+        </el-row>
+
+        <!-- 錯誤狀態 -->
+        <el-alert
+          v-if="error && !loading"
+          :title="error"
+          type="error"
+          show-icon
+          style="margin-bottom: 20px"
+        />
+
         <!-- 教學列表 -->
-        <el-row :gutter="20" class="tutorials-grid">
+        <el-row :gutter="20" class="tutorials-grid" v-if="!loading">
           <el-col 
             :xs="24" :sm="12" :lg="8" 
             v-for="tutorial in filteredTutorials" 
@@ -55,7 +80,7 @@
           >
             <el-card class="tutorial-card" shadow="hover" @click="viewTutorial(tutorial.id)">
               <div class="tutorial-image-container">
-                <img :src="tutorial.image" class="tutorial-image" :alt="tutorial.title" />
+                <img :src="tutorial.image_url || tutorial.image" class="tutorial-image" :alt="tutorial.title" />
                 <div class="tutorial-overlay">
                   <el-button type="primary" round>
                     <el-icon><VideoPlay /></el-icon>
@@ -83,7 +108,7 @@
                     </span>
                     <span class="tutorial-lessons">
                       <el-icon><Document /></el-icon>
-                      {{ tutorial.lessons }} 課
+                      {{ tutorial.lessons_count || tutorial.lessons }} 課
                     </span>
                   </div>
                 </div>
@@ -94,7 +119,7 @@
                   </div>
                   <div class="tutorial-students">
                     <el-icon><User /></el-icon>
-                    {{ tutorial.students }} 學習者
+                    {{ tutorial.students_count || tutorial.students }} 學習者
                   </div>
                 </div>
               </div>
@@ -115,87 +140,74 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import NavBar from '../components/NavBar.vue'
+import apiService from '../services/api.js'
 
 const router = useRouter()
 
 const selectedCategory = ref('all')
 const selectedLevel = ref('all')
 const searchKeyword = ref('')
+const tutorials = ref([])
+const loading = ref(false)
+const error = ref(null)
 
-const tutorials = ref([
+// 從資料庫載入教學數據
+const loadTutorials = async () => {
+  loading.value = true
+  error.value = null
+  
+  try {
+    const data = await apiService.getTutorials()
+    tutorials.value = data
+  } catch (err) {
+    error.value = '載入課程失敗，請稍後再試'
+    console.error('Failed to load tutorials:', err)
+    // 使用備用數據
+    tutorials.value = getBackupTutorials()
+  } finally {
+    loading.value = false
+  }
+}
+
+// 備用數據（如果 API 失敗）
+const getBackupTutorials = () => [
   {
     id: 1,
     title: 'Vue 3 基礎入門',
     description: '從零開始學習 Vue 3 的核心概念，包括響應式數據、組件開發和 Composition API',
-    image: 'https://via.placeholder.com/400x250?text=Vue+3',
+    image_url: 'https://via.placeholder.com/400x250?text=Vue+3',
     category: 'Vue.js',
     level: '初級',
     duration: '2小時',
-    lessons: 8,
+    lessons_count: 8,
     rating: 4.8,
-    students: 1250
+    students_count: 1250
   },
   {
     id: 2,
     title: 'Vite 構建工具詳解',
     description: '深入了解 Vite 的特性和配置，學習如何優化開發環境和構建流程',
-    image: 'https://via.placeholder.com/400x250?text=Vite',
+    image_url: 'https://via.placeholder.com/400x250?text=Vite',
     category: '工具',
     level: '中級',
     duration: '1.5小時',
-    lessons: 6,
+    lessons_count: 6,
     rating: 4.6,
-    students: 890
+    students_count: 890
   },
   {
     id: 3,
     title: 'Element Plus 組件庫',
     description: '掌握 Element Plus 組件的使用技巧，學習如何自定義主題和組件',
-    image: 'https://via.placeholder.com/400x250?text=Element+Plus',
+    image_url: 'https://via.placeholder.com/400x250?text=Element+Plus',
     category: 'Vue.js',
     level: '初級',
     duration: '3小時',
-    lessons: 12,
+    lessons_count: 12,
     rating: 4.7,
-    students: 2100
-  },
-  {
-    id: 4,
-    title: 'JavaScript ES6+ 進階',
-    description: '深入學習現代 JavaScript 特性，包括異步編程、模組化和新語法',
-    image: 'https://via.placeholder.com/400x250?text=JavaScript',
-    category: 'JavaScript',
-    level: '中級',
-    duration: '4小時',
-    lessons: 15,
-    rating: 4.9,
-    students: 3200
-  },
-  {
-    id: 5,
-    title: 'CSS Grid 與 Flexbox',
-    description: '掌握現代 CSS 布局技術，創建響應式和靈活的網頁布局',
-    image: 'https://via.placeholder.com/400x250?text=CSS+Layout',
-    category: 'CSS',
-    level: '中級',
-    duration: '2.5小時',
-    lessons: 10,
-    rating: 4.5,
-    students: 1800
-  },
-  {
-    id: 6,
-    title: 'Vue Router 4 路由管理',
-    description: '學習 Vue Router 4 的新特性，實現單頁應用的路由管理',
-    image: 'https://via.placeholder.com/400x250?text=Vue+Router',
-    category: 'Vue.js',
-    level: '高級',
-    duration: '2小時',
-    lessons: 8,
-    rating: 4.6,
-    students: 950
+    students_count: 2100
   }
-])
+]
 
 const filteredTutorials = computed(() => {
   let result = tutorials.value
@@ -252,6 +264,11 @@ const resetFilters = () => {
 const viewTutorial = (id) => {
   router.push(`/tutorial/${id}`)
 }
+
+// 組件掛載時載入數據
+onMounted(() => {
+  loadTutorials()
+})
 </script>
 
 <style scoped>
