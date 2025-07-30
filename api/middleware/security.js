@@ -3,6 +3,16 @@ export function verifyApiKey(req) {
   const apiKey = req.headers['x-api-key'] || req.query.apikey;
   const validApiKey = process.env.API_SECRET_KEY;
   
+  // 調試日誌（只在開發環境）
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('API Key Debug:', {
+      receivedKey: apiKey ? `${apiKey.substring(0, 5)}...` : 'NONE',
+      expectedKey: validApiKey ? `${validApiKey.substring(0, 5)}...` : 'NONE',
+      hasValidKey: !!validApiKey,
+      hasReceivedKey: !!apiKey
+    });
+  }
+  
   if (!apiKey || !validApiKey) {
     return { valid: false, error: 'API key is required' };
   }
