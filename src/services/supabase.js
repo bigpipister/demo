@@ -2,8 +2,8 @@
 // 資料庫操作類
 export class SupabaseService {
   constructor() {
-    this.baseURL = import.meta.env.VITE_VERCEL_URL 
-      ? `https://${import.meta.env.VITE_VERCEL_URL}/api/supabase`
+    this.baseURL = import.meta.env.PROD
+      ? 'https://demo-iota-nine-24.vercel.app/api/supabase'
       : '/api/supabase'
   }
 

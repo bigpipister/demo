@@ -1,5 +1,13 @@
-# 🚀 Vercel API 架構部署指南
+# 🚀 Vercel API ### 1. API 端點結構
 
+**基礎 URL**: `https://demo-iota-nine-24.vercel.app/api/supabase/`
+
+```
+/api/supabase/
+├── tutorials.js      # 教學課程 CRUD 操作
+├── auth.js          # 用戶認證相關
+└── user-data.js     # 用戶進度和評價
+```
 這個專案現在使用 **Vercel API** 作為中間層來存取 Supabase 資料庫，提供更好的安全性和控制性。
 
 ## 🏗️ 架構說明
@@ -29,17 +37,17 @@
 
 **GET** - 獲取教學列表
 ```
-GET /api/supabase/tutorials?category=Vue.js&level=初級&search=關鍵字
+GET https://demo-iota-nine-24.vercel.app/api/supabase/tutorials?category=Vue.js&level=初級&search=關鍵字
 ```
 
 **GET** - 獲取單個教學
 ```
-GET /api/supabase/tutorials?id=1
+GET https://demo-iota-nine-24.vercel.app/api/supabase/tutorials?id=1
 ```
 
 **POST** - 創建新教學（需要管理員權限）
 ```json
-POST /api/supabase/tutorials
+POST https://demo-iota-nine-24.vercel.app/api/supabase/tutorials
 {
   "title": "新課程",
   "description": "課程描述",

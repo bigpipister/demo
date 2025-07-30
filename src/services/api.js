@@ -7,7 +7,7 @@ const supabaseService = new SupabaseService()
 class ApiService {
   constructor() {
     this.baseURL = process.env.NODE_ENV === 'production' 
-      ? 'https://your-domain.vercel.app/api' 
+      ? 'https://demo-iota-nine-24.vercel.app/api' 
       : '/api'
     this.useSupabase = true // 優先使用 Supabase
   }

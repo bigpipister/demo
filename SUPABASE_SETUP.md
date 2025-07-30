@@ -32,7 +32,7 @@ VITE_VERCEL_URL=
 在 [Vercel Dashboard](https://vercel.com/dashboard) 中設置：
 - `VITE_SUPABASE_URL` = `https://qsljizkshpbvfotcarjn.supabase.co`
 - `VITE_SUPABASE_ANON_KEY` = 您的 anon key
-- `VITE_VERCEL_URL` = 您的 Vercel 域名
+- `VITE_VERCEL_URL` = `demo-iota-nine-24.vercel.app`
 
 ### 5. 測試連線
 ```bash
@@ -40,6 +40,8 @@ npm run dev
 ```
 
 訪問 `http://localhost:5173` 檢查教學課程是否正確載入。
+
+**部署後的網站**: https://demo-iota-nine-24.vercel.app
 
 ## ✅ 已清理的內容
 
