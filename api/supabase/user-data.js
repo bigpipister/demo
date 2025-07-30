@@ -1,8 +1,8 @@
 // Vercel API 端點 - 用戶進度和評價相關操作
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://qsljizkshpbvfotcarjn.supabase.co'
-const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY
+const supabaseUrl = 'https://qsljizkshpbvfotcarjn.supabase.co'
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzbGppemtzaHBidmZvdGNhcmpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM4NTY5NTUsImV4cCI6MjA2OTQzMjk1NX0.rZk0UBzYMsXcBkyONn808PmpPhRaGwjSUV3ElyRlWAs'
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
