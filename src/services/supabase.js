@@ -5,6 +5,7 @@ export class SupabaseService {
     this.baseURL = import.meta.env.PROD
       ? 'https://demo-iota-nine-24.vercel.app/api/supabase'
       : '/api/supabase'
+    this.apiKey = import.meta.env.VITE_API_SECRET_KEY || 'demo-secret-key-12345'
   }
 
   // HTTP 請求輔助方法
@@ -13,6 +14,7 @@ export class SupabaseService {
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        'x-api-key': this.apiKey, // 添加 API 密鑰
         ...options.headers
       },
       ...options
