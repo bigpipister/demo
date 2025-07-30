@@ -1,9 +1,6 @@
 -- Supabase 資料庫建立腳本
 -- 在 Supabase SQL Editor 中執行
 
--- 啟用 Row Level Security
-ALTER DATABASE postgres SET "app.jwt_secret" TO 'your-jwt-secret';
-
 -- 講師表
 CREATE TABLE public.instructors (
   id BIGSERIAL PRIMARY KEY,

@@ -66,22 +66,17 @@ npm run dev
 
 ## 📋 其他免費資料庫選擇
 
-### 1. PlanetScale
-- **優點**: MySQL 相容、分支功能、無連線限制
-- **免費額度**: 10GB 存儲、100 million reads/月
-- **適用**: 需要 MySQL 或複雜分支工作流程
-
-### 2. Railway
+### 1. Railway
 - **優點**: 簡單部署、支援多種資料庫
 - **免費額度**: $5 月度額度
 - **適用**: 全端部署解決方案
 
-### 3. MongoDB Atlas
+### 2. MongoDB Atlas
 - **優點**: NoSQL、靈活 schema、雲端託管
 - **免費額度**: 512MB 存儲
 - **適用**: 需要 NoSQL 或文檔數據庫
 
-### 4. FaunaDB
+### 3. FaunaDB
 - **優點**: 無伺服器、ACID 交易、全球分佈
 - **免費額度**: 100K transactions/月
 - **適用**: 需要強一致性的全球應用

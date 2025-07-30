@@ -1,7 +1,7 @@
 // Vercel API 端點 - 教學課程相關操作
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.VITE_SUPABASE_URL
+const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://qsljizkshpbvfotcarjn.supabase.co'
 const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey)

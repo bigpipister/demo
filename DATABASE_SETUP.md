@@ -22,7 +22,7 @@
 
 ### 1. 設置資料庫
 ```bash
-# 選擇資料庫服務（PlanetScale 推薦）
+# 選擇資料庫服務（Supabase 推薦）
 # 執行 database/schema.sql 創建表格
 # 獲取 DATABASE_URL
 ```
